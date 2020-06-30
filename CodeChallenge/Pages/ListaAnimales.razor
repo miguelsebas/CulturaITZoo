@@ -1,0 +1,83 @@
+﻿@page "/listaAnimales"
+@inject CodeChallenge.Data.ZoologicoServicio _zoologicoServicio
+
+
+<h3>Lista de Animales</h3>
+<EditForm Model="@animales"> 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Especie
+                </th>
+                <th>
+                    Edad
+                </th>
+                <th>
+                    Lugar de Origen
+                </th>
+                <th>
+                    Peso
+                </th>
+                <th>
+                    Porcentaje
+                </th>
+                <th>
+                    Kilos
+                </th>
+                <th>
+                    Cambio de Piel
+                </th>
+                <th>
+                    Consumo Kg Mensual
+                </th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in animales)
+            {
+            <tr>
+                <td>
+                    @animales.Select(modelItem => item.Tipo).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.Especie).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.Edad).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.LugarOrigen).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.Peso).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.Porcentaje).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.Kilos).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.DiasRep).FirstOrDefault()
+                </td>
+                <td>
+                    @animales.Select(modelItem => item.CalcularAlimento()).FirstOrDefault()
+                </td>
+            </tr>}
+        </tbody>
+    </table>
+</EditForm>
+@code { private List<string> _tipos;
+    protected List<CodeChallenge.Data.Model.Animal> animales = new List<Data.Model.Animal>();    
+
+    protected override Task OnInitializedAsync()
+    {
+        _tipos = _zoologicoServicio.TiposAnimales;
+        animales = _zoologicoServicio.TraerTodosAnimales();
+        return base.OnInitializedAsync();
+    } }

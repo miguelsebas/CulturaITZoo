@@ -1,0 +1,61 @@
+﻿@page "/totalMensualKG"
+@inject CodeChallenge.Data.ZoologicoServicio _zoologicoServicio
+
+
+<h3>Total Mensual de Comida</h3>
+
+<div class="form-group row justify-content-center">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group row justify-content-center">
+                    <div class="form-group row justify-content-center">
+                        <div class="col-2">
+                            <label class="col-form-label">Total Carnes</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" readonly @bind="totalCarnes" />
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-2">
+                            <label class="col-form-label">Total Hierbas</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" readonly @bind="totalHierbas" />
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-2">
+                            <label class="col-form-label">Total Conbinado</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" readonly @bind="total" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected double totalCarnes = new double();
+    protected double totalHierbas = new double();
+    protected double totalCarnHierRep = new double();
+    protected double total = new double();
+
+
+    protected override Task OnInitializedAsync()
+    {
+        totalCarnes = _zoologicoServicio.TotalCarnesCarnivoro();
+        totalHierbas = _zoologicoServicio.TotalHierbaHerbiboros();
+        totalCarnHierRep = _zoologicoServicio.TotalCarnesReptil();
+        var repTotal = Math.Round((totalCarnHierRep / 2), 2);
+
+        totalCarnes += repTotal;
+        totalHierbas += repTotal;
+        total = totalCarnes + totalHierbas;
+        return base.OnInitializedAsync();
+    }
+}
