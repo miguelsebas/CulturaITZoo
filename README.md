@@ -30,3 +30,8 @@ Cuando consideres que el problema está resuelto, debes subirlo a un repositorio
 
 
 **Happy hacking!**
+
+###### GRACIAS:
+
+Desde ya muchisimas gracias por la oportunidad, les comento que es la primera vez que manejo esta estructura de datos (MVVM) y tambien Blazor que hasta hace unos dias solo lo habia escuchado. Con este proyecto tuve la posibilidad de estudiar mas o menos como funcionan estas tecnologias. Perdon por la demora es solo que nunca habia manejado estas tecnologias hasta ahora solo habia hecho MVC con ASP.NET.
+
